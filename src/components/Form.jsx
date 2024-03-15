@@ -13,6 +13,7 @@ import Message from './Message';
 import { useCities } from '../contexts/CitiesContext';
 import { useNavigate } from 'react-router-dom';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
     .toUpperCase()
@@ -20,6 +21,8 @@ export function convertToEmoji(countryCode) {
     .map(char => 127397 + char.charCodeAt());
   return String.fromCodePoint(...codePoints);
 }
+
+const BASE_URl = 'https://api.bigdatacloud.net/data/reverse-geocode-client';
 
 function Form() {
   const [lat, lng] = useUrlPosition();
@@ -42,7 +45,7 @@ function Form() {
         setGeocodingError('');
         try {
           const res = await fetch(
-            `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`
+            `${BASE_URl}?latitude=${lat}&longitude=${lng}`
           );
           const data = await res.json();
 

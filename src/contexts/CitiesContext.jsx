@@ -8,7 +8,7 @@ import {
 
 const CitiesContext = createContext();
 
-const BASE_URL = 'http://localhost:8888/.netlify/functions';
+const BASE_URL = 'https://worldwise-rhman.netlify.app/.netlify/functions';
 
 const initialState = {
   cities: [],
@@ -96,7 +96,7 @@ function CitiesProvider({ children }) {
 
       dispatch({ type: 'loading' });
       try {
-        const res = await fetch(`${BASE_URL}/cities/${id}`);
+        const res = await fetch(`${BASE_URL}/get-city?id=${id}`);
         if (!res.ok)
           throw new Error(
             'Something went wrong while loading the city! Please try again.'
@@ -113,7 +113,7 @@ function CitiesProvider({ children }) {
   async function createCity(newCity) {
     dispatch({ type: 'loading' });
     try {
-      const res = await fetch(`${BASE_URL}/cities`, {
+      const res = await fetch(`${BASE_URL}/create-city`, {
         method: 'POST',
         body: JSON.stringify(newCity),
         headers: {
@@ -127,7 +127,6 @@ function CitiesProvider({ children }) {
         );
 
       const data = await res.json();
-
       dispatch({ type: 'city/created', payload: data });
     } catch (err) {
       dispatch({ type: 'rejected', payload: err.message });
@@ -137,7 +136,7 @@ function CitiesProvider({ children }) {
   async function deleteCity(id) {
     dispatch({ type: 'loading' });
     try {
-      const res = await fetch(`${BASE_URL}/cities/${id}`, {
+      const res = await fetch(`${BASE_URL}/delete-city?id=${id}`, {
         method: 'DELETE',
       });
 
