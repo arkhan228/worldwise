@@ -2,5 +2,5 @@
 
 /app/cities /
 /app/countries /
-/app/form/:lat&lng /
-/app/cities/:id/:lat&lng /
+/app/form /
+/app/cities/:id /
