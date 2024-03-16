@@ -11,9 +11,8 @@ export const handler = async (event, context) => {
     };
   }
   const cities = JSON.parse(
-    fs.readFileSync('./data/cities.json', 'utf8')
+    fs.readFileSync('../../data/cities.json', 'utf8')
   ).cities;
-  console.log(cities);
   const id = Array.from({ length: 6 }, () =>
     chars.charAt(Math.floor(Math.random() * chars.length))
   ).join('');
@@ -25,7 +24,11 @@ export const handler = async (event, context) => {
       ...city,
     };
     cities.push(newCity);
-    fs.writeFileSync('./data/cities.json', JSON.stringify({ cities }));
+    fs.writeFileSync(
+      '../../data/cities.json',
+      JSON.stringify({ cities }),
+      'utf8'
+    );
     return {
       statusCode: 200,
       body: JSON.stringify(newCity),

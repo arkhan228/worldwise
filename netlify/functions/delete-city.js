@@ -8,13 +8,16 @@ export const handler = async (event, context) => {
     };
   }
 
-  const cities = JSON.parse(
-    fs.readFileSync('./data/cities.json', 'utf8')
-  ).cities;
-  console.log(cities);
+  const { cities } = JSON.parse(
+    fs.readFileSync('../../data/cities.json', 'utf8')
+  );
   const { id } = event.queryStringParameters;
   const newCities = cities.filter(city => city.id !== id);
-  fs.writeFileSync('./data/cities.json', JSON.stringify({ cities: newCities }));
+  fs.writeFileSync(
+    '../../data/cities.json',
+    JSON.stringify({ cities: newCities }),
+    'utf-8'
+  );
   return {
     statusCode: 200,
   };

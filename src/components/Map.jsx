@@ -1,4 +1,4 @@
-// import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router-dom';
 import styles from './Map.module.css';
