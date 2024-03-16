@@ -11,9 +11,12 @@ export const handler = async (event, context) => {
   try {
     const { id } = event.queryStringParameters;
     const newCities = cities.filter(city => city.id !== id);
-    fs.writeFileSync(
+    fs.writeFile(
       './data/cities.json',
-      JSON.stringify({ cities: newCities })
+      JSON.stringify({ cities: newCities }),
+      err => {
+        if (err) throw new Error(err.message);
+      }
     );
     return {
       statusCode: 200,

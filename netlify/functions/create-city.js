@@ -21,7 +21,9 @@ export const handler = async (event, context) => {
       ...city,
     };
     cities.push(newCity);
-    fs.writeFileSync('./data/cities.json', JSON.stringify({ cities }));
+    fs.writeFile('./data/cities.json', JSON.stringify({ cities }), err => {
+      if (err) throw new Error(err.message);
+    });
     return {
       statusCode: 200,
       body: JSON.stringify(newCity),
