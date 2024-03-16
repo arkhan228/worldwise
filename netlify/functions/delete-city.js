@@ -7,18 +7,21 @@ export const handler = async (event, context) => {
       body: 'Method Not Allowed',
     };
   }
-
-  const { cities } = JSON.parse(
-    fs.readFileSync('../../data/cities.json', 'utf8')
-  );
-  const { id } = event.queryStringParameters;
-  const newCities = cities.filter(city => city.id !== id);
-  fs.writeFileSync(
-    '../../data/cities.json',
-    JSON.stringify({ cities: newCities }),
-    'utf-8'
-  );
-  return {
-    statusCode: 200,
-  };
+  try {
+    const { cities } = JSON.parse(fs.readFileSync('./data/cities.json'));
+    const { id } = event.queryStringParameters;
+    const newCities = cities.filter(city => city.id !== id);
+    fs.writeFileSync(
+      './data/cities.json',
+      JSON.stringify({ cities: newCities })
+    );
+    return {
+      statusCode: 200,
+    };
+  } catch (err) {
+    return {
+      statusCode: 500,
+      body: err.message,
+    };
+  }
 };
