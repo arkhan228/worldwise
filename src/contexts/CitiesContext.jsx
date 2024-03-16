@@ -87,6 +87,7 @@ function CitiesProvider({ children }) {
             'Something went wrong while loading data! Please try again.'
           );
         const data = await res.json();
+        console.log(data);
         dispatch({ type: 'cities/loaded', payload: data });
       } catch (err) {
         dispatch({ type: 'rejected', payload: err.message });

@@ -1,0 +1,3 @@
+# Redirect user from app layout to login page when they are not authenticated
+# /app/cities /login
+# /app/countries /login

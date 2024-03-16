@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
+
 import fs from 'fs';
+import { cities } from '../../data/cities.json';
 const chars = 'abcdefghij0123456789klmnopqrst0123456789uvwxyz012345';
 
 export const handler = async (event, context) => {
@@ -15,8 +17,6 @@ export const handler = async (event, context) => {
 
   try {
     const city = JSON.parse(event.body);
-    const res = await import('../../data/cities.json');
-    const { cities } = res.default;
     const newCity = {
       id,
       ...city,
