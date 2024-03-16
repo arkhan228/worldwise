@@ -18,7 +18,7 @@ import { useGetLocation } from '../hooks/useGeolocation';
 import { useUrlPosition } from '../hooks/useUrlPosition';
 
 const icon = new Icon({
-  iconUrl: '../../public/marker.png',
+  iconUrl: '/marker.png',
   iconSize: [50, 50],
   iconAnchor: [25, 50],
   shadowSize: [41, 41],

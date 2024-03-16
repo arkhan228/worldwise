@@ -2,7 +2,7 @@
 
 import fs from 'fs';
 const chars = 'abcdefghij0123456789klmnopqrst0123456789uvwxyz012345';
-
+import { cities } from '../../data/cities.json';
 export const handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
     return {
@@ -11,7 +11,6 @@ export const handler = async (event, context) => {
     };
   }
   try {
-    const { cities } = JSON.parse(fs.readFileSync('./data/cities.json'));
     const id = Array.from({ length: 6 }, () =>
       chars.charAt(Math.floor(Math.random() * chars.length))
     ).join('');
