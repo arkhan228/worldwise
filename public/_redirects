@@ -2,4 +2,5 @@
 
 /app/cities /
 /app/countries /
-/app/cities/map /
+/app/cities/form/:lat&lng /
+/app/cities/:id /
