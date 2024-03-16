@@ -8,6 +8,7 @@ import {
 
 const CitiesContext = createContext();
 
+// const BASE_URL = 'http://localhost:8888/.netlify/functions';
 const BASE_URL = 'https://worldwise-rhman.netlify.app/.netlify/functions';
 
 const initialState = {
@@ -75,7 +76,11 @@ function CitiesProvider({ children }) {
     async function FetchCities() {
       dispatch({ type: 'loading' });
       try {
-        const res = await fetch(`${BASE_URL}/cities`);
+        const res = await fetch(`${BASE_URL}/cities`, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
 
         if (!res.ok)
           throw new Error(
@@ -96,7 +101,11 @@ function CitiesProvider({ children }) {
 
       dispatch({ type: 'loading' });
       try {
-        const res = await fetch(`${BASE_URL}/get-city?id=${id}`);
+        const res = await fetch(`${BASE_URL}/get-city?id=${id}`, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
         if (!res.ok)
           throw new Error(
             'Something went wrong while loading the city! Please try again.'
@@ -138,6 +147,9 @@ function CitiesProvider({ children }) {
     try {
       const res = await fetch(`${BASE_URL}/delete-city?id=${id}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
 
       if (!res.ok)
