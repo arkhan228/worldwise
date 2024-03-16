@@ -1,7 +1,8 @@
-import 'leaflet/dist/leaflet.css';
+// import 'leaflet/dist/leaflet.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router-dom';
 import styles from './Map.module.css';
+import { Icon } from 'leaflet';
 import {
   MapContainer,
   Marker,
@@ -16,6 +17,12 @@ import Button from './Button';
 import { useGetLocation } from '../hooks/useGeolocation';
 import { useUrlPosition } from '../hooks/useUrlPosition';
 
+const icon = new Icon({
+  iconUrl: '../../src/assets/marker.png',
+  iconSize: [50, 50],
+  iconAnchor: [25, 50],
+  shadowSize: [41, 41],
+});
 function Map() {
   const { cities } = useCities();
   const [position, setPosition] = useState([27.2, 74.35]);
@@ -62,6 +69,7 @@ function Map() {
         {cities.map(city => (
           <Marker
             position={[city.position.lat, city.position.lng]}
+            icon={icon}
             key={city.id}
           >
             <Popup>

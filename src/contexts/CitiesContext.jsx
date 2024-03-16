@@ -8,8 +8,8 @@ import {
 
 const CitiesContext = createContext();
 
-// const BASE_URL = 'http://localhost:8888/.netlify/functions';
-const BASE_URL = 'https://worldwise-rhman.netlify.app/.netlify/functions';
+const BASE_URL = 'http://localhost:8888/.netlify/functions';
+// const BASE_URL = 'https://worldwise-rhman.netlify.app/.netlify/functions';
 
 const initialState = {
   cities: [],
@@ -87,7 +87,6 @@ function CitiesProvider({ children }) {
             'Something went wrong while loading data! Please try again.'
           );
         const data = await res.json();
-        console.log(data);
         dispatch({ type: 'cities/loaded', payload: data });
       } catch (err) {
         dispatch({ type: 'rejected', payload: err.message });

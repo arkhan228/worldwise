@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 
 import fs from 'fs';
-import { cities } from '../../data/cities.json';
 const chars = 'abcdefghij0123456789klmnopqrst0123456789uvwxyz012345';
 
 export const handler = async (event, context) => {
@@ -11,6 +10,10 @@ export const handler = async (event, context) => {
       body: 'Method Not Allowed',
     };
   }
+  const cities = JSON.parse(
+    fs.readFileSync('./data/cities.json', 'utf8')
+  ).cities;
+  console.log(cities);
   const id = Array.from({ length: 6 }, () =>
     chars.charAt(Math.floor(Math.random() * chars.length))
   ).join('');
