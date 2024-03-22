@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import fs from 'fs';
+import { writeFileSync } from 'fs';
 import { cities } from '../../data/cities.json';
 export const handler = async (event, context) => {
   if (event.httpMethod !== 'DELETE') {
@@ -11,7 +11,7 @@ export const handler = async (event, context) => {
   try {
     const { id } = event.queryStringParameters;
     const newCities = cities.filter(city => city.id !== id);
-    fs.writeFile(
+    writeFileSync(
       './data/cities.json',
       JSON.stringify({ cities: newCities }),
       err => {
@@ -22,6 +22,7 @@ export const handler = async (event, context) => {
       statusCode: 200,
     };
   } catch (err) {
+    console.error(err);
     return {
       statusCode: 500,
       body: err.message,

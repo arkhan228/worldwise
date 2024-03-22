@@ -1,4 +1,4 @@
-# Redirect user from app layout to login page when they are not authenticated
+# Redirect user from app layout to main page when they are not authenticated
 
 /app/cities /
 /app/countries /

@@ -7,13 +7,12 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "server": "json-server --watch ./data/cities.json --port 3333"
+    "preview": "vite preview"
   },
   "dependencies": {
+    "@netlify/functions": "^2.6.0",
     "country-flag-emoji-polyfill": "^0.1.8",
     "fs": "^0.0.1-security",
-    "json-server": "^1.0.0-alpha.23",
     "leaflet": "^1.9.4",
     "react": "^18.2.0",
     "react-datepicker": "^6.3.0",
